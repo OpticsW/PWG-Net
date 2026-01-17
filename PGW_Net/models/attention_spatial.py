@@ -7,9 +7,9 @@ class Efficient_Spatial_Attention(nn.Module):
     def __init__(self, channels, kernel_size=3):
         super(Efficient_Spatial_Attention, self).__init__()
         
-        self.avg_pool=nn.AdaptiveAvgPool2d(1) # Create an adaptive average pooling layer across both dimensions
+        self.avg_pool=nn.AdaptiveAvgPool2d(1) 
         
-        self.conv1d=nn.Conv1d(channels, channels, kernel_size=kernel_size, padding=int(kernel_size/2), bias=False) # Create a 1D convolutional layer
+        self.conv1d=nn.Conv1d(channels, channels, kernel_size=kernel_size, padding=int(kernel_size/2), bias=False) 
     
     def forward(self, x):
         avg_pool=self.avg_pool(x)
@@ -20,3 +20,4 @@ class Efficient_Spatial_Attention(nn.Module):
         sigmoid_conv1d=sigmoid_conv1d.view(b,c,1,1)
         
         return x*sigmoid_conv1d.expand_as(x)
+
